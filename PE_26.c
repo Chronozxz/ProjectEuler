@@ -28,11 +28,16 @@ MEMORY:
 #include <sys/resource.h>
 #include <stdio.h>
 
-int getCycles( int nc )
+int getCycles( int nc )//number current
 {
-	int nrc = 0; //number recurring cycle
-
-	return ;
+  int a = 1;
+  int t = 0;
+  do {
+  	printf("%d \n",a * 10 % nc);
+    a = a * 10 % nc;
+    t++;
+  } while(a != 1);
+  return t;
 }
 
 int main(int argc, char **argv)
@@ -44,11 +49,12 @@ int main(int argc, char **argv)
     //---------------------------Program v-------------------------------
     int longestCycle = 0, cycle;
 	
-	for(int numCurrent = 3; numCurrent < 1000; numCurrent+=2)
+	for(int numCurrent = 7; numCurrent < 1000; numCurrent+=2)
 	{
+		printf("%d\n",numCurrent);
 		cycle = getCycles( numCurrent );
-		if(cycles > longestCycle)
-			longestCycle = cycles;
+		if(cycle > longestCycle)
+			longestCycle = cycle;
 	}
 	
 	printf("%d \n",longestCycle);
