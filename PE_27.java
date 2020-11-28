@@ -16,7 +16,7 @@ where |n| is the modulus/absolute value of ne.g. |11| = 11 and |-4| = 4
 
 Find the product of the coefficients, a and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n = 0.
 Answer:
-    
+    -59231
 CPU:
     700000    microseconds 
 MEMORY:
