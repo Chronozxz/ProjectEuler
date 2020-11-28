@@ -14,11 +14,11 @@ It can be verified that the sum of the numbers on the diagonals is 101.
 
 What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
 Answer:
-    983
+    669171001
 CPU:
-    898    microseconds 
+    244    microseconds 
 MEMORY:
-    2668    kb
+    3244    kb
 */
 
 #include <sys/time.h>
@@ -33,7 +33,23 @@ int main(int argc, char **argv)
     gettimeofday(&t, NULL);
     //---------------------------Program v-------------------------------
     
-    printf("");
+    int max_jumps = (int)(1001/2);
+    int inc=0;//increment of number to the diagonal
+    int value = 1;//number in diagonal
+    int sum=1;
+    short round_matrix = 1;//numbers times of round the matrix
+    while(round_matrix <= max_jumps)
+    {
+    	inc +=2;//increment 
+    	for(int times = 0; times < 4; times++)
+    	{//always 4 numbers in diagonal
+    		value += inc;//new value
+    		sum +=value;//sum the number 
+    	}
+    	round_matrix++;//+1 for square
+    }
+    
+    printf("%d \n",sum);
 	//---------------------------Program ^-------------------------------
 	gettimeofday(&t2, NULL);
     microseconds = ((t2.tv_usec - t.tv_usec)  + ((t2.tv_sec - t.tv_sec) * 1000000.0f));
@@ -42,3 +58,15 @@ int main(int argc, char **argv)
     printf("Memory: %ld KB\n", (long)use.ru_maxrss);
 	return 0;
 }
+
+/*
+
+43 44 45 46 47 48 49 50          	1 to 3  inc = 2   
+42 21 22 23 24 25 26      			9 to 13  inc = 4
+41 20  7  8  9 10 27				25 to 31   inc = 6
+40 19  6  1  2 11 28
+39 18  5  4  3 12 29 
+38 17 16 15 14 13 30 
+37 36 35 34 33 32 31 
+
+*/
